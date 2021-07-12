@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateInvitationApi", "CreateInvitationApi\CreateInvitationApi.csproj", "{42A24DAD-7AC4-4E96-A640-9397FD514426}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateInvitationApi.Service", "CreateInvitationApi.Service\CreateInvitationApi.Service.csproj", "{520DA737-2D74-4A41-B839-2946E5B8803C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42A24DAD-7AC4-4E96-A640-9397FD514426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A24DAD-7AC4-4E96-A640-9397FD514426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A24DAD-7AC4-4E96-A640-9397FD514426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A24DAD-7AC4-4E96-A640-9397FD514426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{520DA737-2D74-4A41-B839-2946E5B8803C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520DA737-2D74-4A41-B839-2946E5B8803C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520DA737-2D74-4A41-B839-2946E5B8803C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520DA737-2D74-4A41-B839-2946E5B8803C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4407FC4-B895-4545-A45F-164D82099847}
+	EndGlobalSection
+EndGlobal
