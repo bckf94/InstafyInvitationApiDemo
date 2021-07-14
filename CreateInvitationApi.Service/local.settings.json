@@ -1,0 +1,12 @@
+{
+  "AzureCLIApi": {
+    "ResourceGroupName": "instafydevops",
+    "StaticSiteName": "instafy-rg",
+    "ClientId": "0059f2ab-ce0b-4197-b6f8-a604e9603971",
+    "ClientSecret": "WzrTSzCg.s1p9LLrjpnrnxQP..Lf2IT2ee",
+    "tenantId": "98dd4db2-48ea-467e-b37e-948756fa36e4",
+    "SubscriptionId": "e72e38e6-248a-4526-8cc2-8508cc5080d5",
+    "Resource": "https://management.azure.com/",
+    "ApiVersion": "2019-12-01-preview"
+  }
+}

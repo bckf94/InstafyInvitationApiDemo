@@ -1,0 +1,9 @@
+C:\Users\fbeck\source\repos\CreateInvitationApi\CreateInvitationApi.Service\bin\Debug\netcoreapp3.1\CreateInvitationApi.Service.deps.json
+C:\Users\fbeck\source\repos\CreateInvitationApi\CreateInvitationApi.Service\bin\Debug\netcoreapp3.1\CreateInvitationApi.Service.dll
+C:\Users\fbeck\source\repos\CreateInvitationApi\CreateInvitationApi.Service\bin\Debug\netcoreapp3.1\CreateInvitationApi.Service.pdb
+C:\Users\fbeck\source\repos\CreateInvitationApi\CreateInvitationApi.Service\obj\Debug\netcoreapp3.1\CreateInvitationApi.Service.csprojAssemblyReference.cache
+C:\Users\fbeck\source\repos\CreateInvitationApi\CreateInvitationApi.Service\obj\Debug\netcoreapp3.1\CreateInvitationApi.Service.AssemblyInfoInputs.cache
+C:\Users\fbeck\source\repos\CreateInvitationApi\CreateInvitationApi.Service\obj\Debug\netcoreapp3.1\CreateInvitationApi.Service.AssemblyInfo.cs
+C:\Users\fbeck\source\repos\CreateInvitationApi\CreateInvitationApi.Service\obj\Debug\netcoreapp3.1\CreateInvitationApi.Service.csproj.CoreCompileInputs.cache
+C:\Users\fbeck\source\repos\CreateInvitationApi\CreateInvitationApi.Service\obj\Debug\netcoreapp3.1\CreateInvitationApi.Service.dll
+C:\Users\fbeck\source\repos\CreateInvitationApi\CreateInvitationApi.Service\obj\Debug\netcoreapp3.1\CreateInvitationApi.Service.pdb

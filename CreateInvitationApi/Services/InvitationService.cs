@@ -1,20 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using CreateInvitationApi.Service;
+using CreateInvitationApi.Controller;
+using CreateInvitationApi.Interfaces;
+using CreateInvitationApi.Models;
+using Microsoft.Extensions.Options;
+using Microsoft.Identity.Client;
+using Newtonsoft.Json;
 
-namespace CreateInvitationApi
+namespace CreateInvitationApi.Services
 {
-    public class HttpClientService : IHttpClientService
+    public class InvitationService : IInvitationService
     {
-        private readonly IHttpClientService _httpClient;
+        private readonly HttpClient _httpClient;
+        private readonly ApiConfiguration _azureCliConfiguration;
 
-        public HttpClientService(IHttpClientService httpClientHelper)
+        public InvitationService(
+            IOptions<ApiConfiguration> azureCliConfiguration,
+            HttpClient httpClient)
         {
-            _httpClient = httpClientHelper;
+            _azureCliConfiguration = azureCliConfiguration.Value;
+            _httpClient = httpClient;
         }
 
         /// <summary>
@@ -24,18 +32,32 @@ namespace CreateInvitationApi
         /// Todo: Spaeter nach Providers filtern
         /// </remarks>
         /// <returns></returns>
-        public async Task<Invitation> GetInvitation(string email)
+        public async Task<Invitation> GetInvitationAsync(string email)
         {
             try
             {
                 if (email == null)
                     throw new ArgumentNullException(nameof(email));
 
-                if (IsValidEmail(email))
-                {
-                }
+                if (!IsValidEmail(email))
+                    return new Invitation();
 
-                return new Invitation();
+                if (_azureCliConfiguration is null)
+                    throw new Exception("Error by getting the azureCliConfiguration");
+
+                var invitationProperties = new InvitationProperties
+                {
+                    Provider = "add",
+                    Roles = "reader",
+                    UserDetails = email,
+                    Domain = _azureCliConfiguration.Domaine,
+                    NumHoursToExpiration = 1
+                };
+
+                var controller = new WebSiteManagementController(_azureCliConfiguration);
+                var result = await controller.CreateUserInvitationLinkAsync(invitationProperties);
+
+                return result;
             }
             catch (ArgumentNullException)
             {
