@@ -12,6 +12,8 @@ namespace CreateInvitationApi
     public static class AuthenticationHelper
     {
         private const string ArmResource = "https://management.core.windows.net/";
+        //private const string ArmResource = "https://management.azure.com/";
+
         private const string TokenEndpoint = "https://login.windows.net/{0}/oauth2/token";
         private const string SpnPayload = "resource={0}&client_id={1}&grant_type=client_credentials&client_secret={2}";
 

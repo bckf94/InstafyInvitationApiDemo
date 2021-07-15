@@ -5,6 +5,7 @@
     <UserSecretsId>6711ae72-f014-4d36-b6c3-6b2bdb41fc2a</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="AuthenticationHelper.cs" />
     <Compile Remove="ManagementService.cs" />
     <Compile Remove="Services\ConfigurationManagerService.cs" />
   </ItemGroup>

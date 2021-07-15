@@ -10,6 +10,6 @@
         public string SubscriptionId { get; set; }
         public string Resource { get; set; }
         public string ApiVersion { get; set; }
-        public string Domaine { get; set; }
+        public string Domain { get; set; }
     }
 }

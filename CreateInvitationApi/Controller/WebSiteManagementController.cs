@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using CreateInvitationApi.Models;
@@ -21,7 +22,6 @@ namespace CreateInvitationApi.Controller
     {
         private readonly WebSiteManagementClient _client;
         private readonly ApiConfiguration _options;
-        private string _authResult;
 
         public WebSiteManagementController(ApiConfiguration options)
         {
@@ -31,33 +31,45 @@ namespace CreateInvitationApi.Controller
                     tenantId: _options.TenantId,
                     clientId: _options.ClientId,
                     clientSecret: _options.ClientSecret))
-                { SubscriptionId = _options.SubscriptionId };
+                {
+                    SubscriptionId = _options.SubscriptionId
+                };
         }
 
+        /// <summary>
+        /// Gets the Service principal token
+        /// </summary>
+        /// <param name="tenantId"></param>
+        /// <param name="clientId"></param>
+        /// <param name="clientSecret"></param>
+        /// <returns></returns>
         private TokenCredentials GetCredsFromServicePrincipal(string tenantId, string clientId, string clientSecret)
         {
             var authority = @"https://login.microsoftonline.com/" + tenantId;
             var authContext = new AuthenticationContext(authority);
             var credential = new ClientCredential(clientId, clientSecret);
             var authResult = authContext.AcquireTokenAsync("https://management.azure.com", credential).GetAwaiter().GetResult();
-            _authResult = authResult.AccessToken;
+
             return new TokenCredentials(authResult.AccessToken);
         }
 
+        /// <summary>
+        /// Gets the Invitation link from client
+        /// </summary>
+        /// <param name="properties"></param>
+        /// <returns></returns>
         public async Task<Invitation> CreateUserInvitationLinkAsync(InvitationProperties properties)
         {
             try
             {
-                var headers = new Dictionary<string, List<string>>();
-
                 var response = await _client.StaticSites.CreateUserRolesInvitationLinkWithHttpMessagesAsync(
                     resourceGroupName: _options.ResourceGroupName,
                     name: _options.StaticSiteName,
                     staticSiteUserRolesInvitationEnvelope: SetInvitationRequestResource(properties)
-
                 );
 
                 var resultContent = await response.Response.Content.ReadAsStringAsync();
+
                 return JsonConvert.DeserializeObject<Invitation>(resultContent);
             }
             catch (Exception e)
@@ -67,6 +79,11 @@ namespace CreateInvitationApi.Controller
             }
         }
 
+        /// <summary>
+        ///  Sets StaticSiteUserInvitationRequestResource
+        /// </summary>
+        /// <param name="invitationProperties"></param>
+        /// <returns></returns>
         public StaticSiteUserInvitationRequestResource SetInvitationRequestResource(InvitationProperties invitationProperties)
         {
             try

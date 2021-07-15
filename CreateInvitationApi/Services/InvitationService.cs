@@ -32,38 +32,20 @@ namespace CreateInvitationApi.Services
         /// Todo: Spaeter nach Providers filtern
         /// </remarks>
         /// <returns></returns>
-        public async Task<Invitation> GetInvitationAsync(string email)
+        public async Task<Invitation> GetInvitationAsync(string email, string roles, string provider, int numHoursToExpiration)
         {
             try
             {
-                if (email == null)
-                    throw new ArgumentNullException(nameof(email));
-
                 if (!IsValidEmail(email))
                     return new Invitation();
 
                 if (_azureCliConfiguration is null)
                     throw new Exception("Error by getting the azureCliConfiguration");
 
-                var invitationProperties = new InvitationProperties
-                {
-                    Provider = "add",
-                    Roles = "reader",
-                    UserDetails = email,
-                    Domain = _azureCliConfiguration.Domaine,
-                    NumHoursToExpiration = 1
-                };
-
+                var invitationProperties = InvitationProperties(email, roles, provider, numHoursToExpiration);
                 var controller = new WebSiteManagementController(_azureCliConfiguration);
                 var result = await controller.CreateUserInvitationLinkAsync(invitationProperties);
-
                 return result;
-            }
-            catch (ArgumentNullException)
-            {
-                const string error = "The email is not valid";
-                Console.WriteLine(error);
-                return null;
             }
             catch (Exception e)
             {
@@ -73,6 +55,19 @@ namespace CreateInvitationApi.Services
                 Console.WriteLine(error);
                 return null;
             }
+        }
+
+        private InvitationProperties InvitationProperties(string email, string roles, string provider, int numHoursToExpiration)
+        {
+            var invitationProperties = new InvitationProperties
+            {
+                Provider = provider,
+                Roles = roles,
+                UserDetails = email,
+                Domain = _azureCliConfiguration.Domain,
+                NumHoursToExpiration = numHoursToExpiration
+            };
+            return invitationProperties;
         }
 
         /// <summary>

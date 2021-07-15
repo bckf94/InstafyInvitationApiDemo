@@ -5,6 +5,6 @@ namespace CreateInvitationApi.Interfaces
 {
     public interface IInvitationService
     {
-        Task<Invitation> GetInvitationAsync(string name);
+        Task<Invitation> GetInvitationAsync(string email, string roles, string provider, int numHoursToExpiration);
     }
 }

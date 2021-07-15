@@ -82,7 +82,7 @@ namespace CreateInvitationApi
             {
                 return new StaticSiteUserInvitationRequestResource
                 {
-                    Domain = invitationProperties.Domaine,
+                    Domain = invitationProperties.Domain,
                     UserDetails = invitationProperties.UserDetails,
                     Roles = invitationProperties.Roles,
                     NumHoursToExpiration = invitationProperties.NumHoursToExpiration,
